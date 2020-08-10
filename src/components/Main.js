@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import PopupWithForm from './PopupWithForm';
+import PopupWithImage from './PopupWithImage';
 
 
 function Main() {
@@ -46,10 +47,18 @@ function Main() {
     { <PopupWithForm title='Edit profile' name='edit-profile'
     children={
       [
-        <input type="text" name="name" id="name-input" className="form__input edit-profile__name" placeholder="Name" minLength="2" maxLength="40" required />,
-        <span id="name-input-error" className="form__input-error"></span>,
-        <input type="text" name="job" id="job-input" className="form__input edit-profile__job" placeholder="About me" minLength="2" maxLength="200" required />,
+        <div key="1">
+        <input type="text" name="name" id="name-input" className="form__input edit-profile__name" placeholder="Name" minLength="2" maxLength="40" required />
+        </div>,
+        <div key="2">
+        <span id="name-input-error" className="form__input-error"></span>
+        </div>,
+        <div key="3">
+        <input type="text" name="job" id="job-input" className="form__input edit-profile__job" placeholder="About me" minLength="2" maxLength="200" required />
+        </div>,
+        <div key="4">
         <span id="job-input-error" className="form__input-error"></span>
+        </div>
       ]
     } /> }
 
@@ -57,44 +66,30 @@ function Main() {
     { <PopupWithForm title='New place' name='add-card'
     children={
       [
-        <input type="text" name="name" id="title-input" className="form__input add-card__title" placeholder="Title" minLength="2" maxLength="30" required />,
-        <span id="title-input-error" className="form__input-error"></span>,
-        <input type="url" name="link" id="link-input" className="form__input add-card__image-link" placeholder="Image URL" required />,
-        <span id="link-input-error" className="form__input-error"></span>
+        <div key="1">
+        <input type="text" name="name" id="title-input" className="form__input add-card__title" placeholder="Title" minLength="2" maxLength="30" required /></div>,
+        <div key="2">
+        <span id="title-input-error" className="form__input-error"></span></div>,
+        <div key="3">
+        <input type="url" name="link" id="link-input" className="form__input add-card__image-link" placeholder="Image URL" required /></div>,
+        <div key="4">
+        <span id="link-input-error" className="form__input-error"></span></div>
       ]
     } /> }
     // show a card
-    <div className="popup popup_dark">
-      <div className="popup__container popup__container_photo">
-        <span className="popup__close">+</span>
-        <figure className="photo">
-          <img className="photo__item" src="#" alt="" />
-          <figcaption className="photo__title"></figcaption>
-        </figure>
-      </div>
-    </div>
-
+    { <PopupWithImage /> }
     // delete confirmation
     { <PopupWithForm title='Are you sure?' name='delete-card' /> }
 
     // change profile picture
-    <div className="popup">
-      <div className="popup__container">
-        <span className="popup__close">+</span>
-        <form action="#" method="post" className="form change-avatar" noValidate>
-          <h2 className="change-avatar__heading">Change profile picture</h2>
-          <input type="url" name="avatar-link" id="avatar-input" className="form__input change-avatar__link" placeholder="Image URL" required />
-          <span id="avatar-input-error" className="form__input-error"></span>
-          <input type="submit" name="save" className="btn form__submit change-avatar__save" value="Save" />
-        </form>
-      </div>
-    </div>
 
     { <PopupWithForm title='Change profile picture' name='change-avatar'
     children={
       [
-        <input type="url" name="avatar-link" id="avatar-input" className="form__input change-avatar__link" placeholder="Image URL" required />,
-        <span id="avatar-input-error" className="form__input-error"></span>
+        <div key='1'>
+        <input type="url" name="avatar-link" id="avatar-input" className="form__input change-avatar__link" placeholder="Image URL" required /></div>,
+        <div key='2'>
+        <span id="avatar-input-error" className="form__input-error"></span></div>
       ]
     } /> }
 
