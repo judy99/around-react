@@ -9,6 +9,8 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlace] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatar] = React.useState(false);
 
+  // const [isPopupClose, setPopupClose] = React.useState(false);
+
   function handleEditAvatarClick () {
     setEditAvatar(true);
   }
@@ -21,6 +23,12 @@ function App() {
     setAddPlace(true);
   }
 
+  function closeAllPopups () {
+    setEditAvatar(false);
+    setEditPopup(false);
+    setAddPlace(false);
+  }
+
   return (
     <div className="page" >
       <Header />
@@ -30,7 +38,8 @@ function App() {
       onAddPlace={handleAddPlaceClick}
       isEditProfilePopupOpen={isEditProfilePopupOpen}
       isAddPlacePopupOpen={isAddPlacePopupOpen}
-      isEditAvatarPopupOpen={isEditAvatarPopupOpen} />
+      isEditAvatarPopupOpen={isEditAvatarPopupOpen}
+      onCloseAllPopups={closeAllPopups} />
       <Footer />
     </div>
   );

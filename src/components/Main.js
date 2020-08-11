@@ -14,7 +14,7 @@ function Main(props) {
         <div className="profile__person">
           <div className="profile__avatar-wrapper">
             <img src="images/avatar.jpg" alt="User ptofile avatar" className="profile__avatar" />
-            <div className="profile__avatar-hover" onClick={props.onEditAvatar}></div>
+            <div className="profile__avatar-hover" onClick={props.onEditAvatar} ></div>
           </div>
           <div className="profile__info">
             <div className="profile__info-wrapper">
@@ -32,36 +32,24 @@ function Main(props) {
 
     // invisible blocks
     // edit profile
-     <PopupWithForm title='Edit profile' name='edit-profile' isOpen={props.isEditProfilePopupOpen}
+     <PopupWithForm title='Edit profile' name='edit-profile' isOpen={props.isEditProfilePopupOpen} onClose={props.onCloseAllPopups}
     children={
       [
-        <div key="1">
-        <input type="text" name="name" id="name-input" className="form__input edit-profile__name" placeholder="Name" minLength="2" maxLength="40" required />
-        </div>,
-        <div key="2">
-        <span id="name-input-error" className="form__input-error"></span>
-        </div>,
-        <div key="3">
-        <input type="text" name="job" id="job-input" className="form__input edit-profile__job" placeholder="About me" minLength="2" maxLength="200" required />
-        </div>,
-        <div key="4">
-        <span id="job-input-error" className="form__input-error"></span>
-        </div>
+        <input key="1" type="text" name="name" id="name-input" className="form__input edit-profile__name" placeholder="Name" minLength="2" maxLength="40" required />,
+        <span key="2" id="name-input-error" className="form__input-error"></span>,
+        <input key="3" type="text" name="job" id="job-input" className="form__input edit-profile__job" placeholder="About me" minLength="2" maxLength="200" required />,
+        <span key="4" id="job-input-error" className="form__input-error"></span>
       ]
     } />
 
     // add a new card
-    { <PopupWithForm title='New place' name='add-card' isOpen={props.isAddPlacePopupOpen}
+    { <PopupWithForm title='New place' name='add-card' isOpen={props.isAddPlacePopupOpen} onClose={props.onCloseAllPopups}
     children={
       [
-        <div key="1">
-        <input type="text" name="name" id="title-input" className="form__input add-card__title" placeholder="Title" minLength="2" maxLength="30" required /></div>,
-        <div key="2">
-        <span id="title-input-error" className="form__input-error"></span></div>,
-        <div key="3">
-        <input type="url" name="link" id="link-input" className="form__input add-card__image-link" placeholder="Image URL" required /></div>,
-        <div key="4">
-        <span id="link-input-error" className="form__input-error"></span></div>
+        <input key="1" type="text" name="name" id="title-input" className="form__input add-card__title" placeholder="Title" minLength="2" maxLength="30" required />,
+        <span key="2" id="title-input-error" className="form__input-error"></span>,
+        <input key="3" type="url" name="link" id="link-input" className="form__input add-card__image-link" placeholder="Image URL" required />,
+        <span key="4" id="link-input-error" className="form__input-error"></span>
       ]
     } /> }
     // show a card
@@ -72,13 +60,11 @@ function Main(props) {
 
 
     // change avatar
-    { <PopupWithForm title='Change profile picture' name='change-avatar' isOpen={props.isEditAvatarPopupOpen}
+    { <PopupWithForm title='Change profile picture' name='change-avatar' isOpen={props.isEditAvatarPopupOpen} onClose={props.onCloseAllPopups}
     children={
       [
-        <div key='1'>
-        <input type="url" name="avatar-link" id="avatar-input" className="form__input change-avatar__link" placeholder="Image URL" required /></div>,
-        <div key='2'>
-        <span id="avatar-input-error" className="form__input-error"></span></div>
+        <input key="1" type="url" name="avatar-link" id="avatar-input" className="form__input change-avatar__link" placeholder="Image URL" required />,
+        <span key="2" id="avatar-input-error" className="form__input-error"></span>
       ]
     } /> }
 
