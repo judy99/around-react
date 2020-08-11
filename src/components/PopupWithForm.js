@@ -10,7 +10,6 @@ function PopupWithForm(props) {
     evt.preventDefault();
     alert('hi');
     open();
-    // submitSelector.value = loadingText;
   }
 
   function setEventListeners () {
@@ -29,12 +28,12 @@ function PopupWithForm(props) {
     setEventListeners();
   }
 
-  function setLoadingText (text) {
-    // submitSelector.value = text;
-  }
+  // function setLoadingText (text) {
+  //   submitSelector.value = text;
+  // }
 
   return (
-    <div className="popup">
+    <div className={`popup ${(props.isOpen) ? 'popup_opened' : ''}`}>
       <div className="popup__container">
         <span className="popup__close">+</span>
         <form action="#" method="post" className={`form ${props.name}`} name={`${props.name}`} noValidate>

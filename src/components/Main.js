@@ -5,20 +5,7 @@ import PopupWithForm from './PopupWithForm';
 import PopupWithImage from './PopupWithImage';
 
 
-function Main() {
-
-  function handleEditAvatarClick () {
-    document.querySelector('.change-avatar').closest('.popup').classList.add('popup_opened');
-  }
-
-  function handleEditProfileClick () {
-    // alert("handleEditProfileClick");
-    document.querySelector('.edit-profile').closest('.popup').classList.add('popup_opened');
-  }
-
-  function handleAddPlaceClick () {
-    document.querySelector('.add-card').closest('.popup').classList.add('popup_opened');
-  }
+function Main(props) {
 
   return (
     <>
@@ -27,24 +14,25 @@ function Main() {
         <div className="profile__person">
           <div className="profile__avatar-wrapper">
             <img src="images/avatar.jpg" alt="User ptofile avatar" className="profile__avatar" />
-            <div className="profile__avatar-hover" onClick={handleEditAvatarClick}></div>
+            <div className="profile__avatar-hover" onClick={props.onEditAvatar}></div>
           </div>
           <div className="profile__info">
             <div className="profile__info-wrapper">
               <h1 className="profile__name">Jacques Cousteau</h1>
-              <button type="button" className="btn profile__edit-btn" onClick={handleEditProfileClick}></button>
+              <button type="button" className="btn profile__edit-btn" onClick={props.onEditProfile}></button>
             </div>
             <p className="profile__occupation">Explorer</p>
           </div>
         </div>
-        <button type="button" className="btn profile__add-btn" onClick={handleAddPlaceClick}></button>
+        <button type="button" className="btn profile__add-btn" onClick={props.onAddPlace}></button>
       </section>
       <ul className="gallery">
       </ul>
     </main>
+
     // invisible blocks
-    // change profile information
-    { <PopupWithForm title='Edit profile' name='edit-profile'
+    // edit profile
+     <PopupWithForm title='Edit profile' name='edit-profile' isOpen={props.isEditProfilePopupOpen}
     children={
       [
         <div key="1">
@@ -60,10 +48,10 @@ function Main() {
         <span id="job-input-error" className="form__input-error"></span>
         </div>
       ]
-    } /> }
+    } />
 
     // add a new card
-    { <PopupWithForm title='New place' name='add-card'
+    { <PopupWithForm title='New place' name='add-card' isOpen={props.isAddPlacePopupOpen}
     children={
       [
         <div key="1">
@@ -78,12 +66,13 @@ function Main() {
     } /> }
     // show a card
     { <PopupWithImage /> }
+
     // delete confirmation
     { <PopupWithForm title='Are you sure?' name='delete-card' /> }
 
-    // change profile picture
 
-    { <PopupWithForm title='Change profile picture' name='change-avatar'
+    // change avatar
+    { <PopupWithForm title='Change profile picture' name='change-avatar' isOpen={props.isEditAvatarPopupOpen}
     children={
       [
         <div key='1'>
