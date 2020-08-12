@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import PopupWithForm from './PopupWithForm';
 import PopupWithImage from './PopupWithImage';
 import {api} from '../utils/Api.js';
+import Card from './Card';
+
 
 function Main(props) {
   const [userName, setUserName] = React.useState('test');
@@ -16,11 +18,13 @@ function Main(props) {
       setUserName(res.name);
       setDescription(res.description);
       setUserAvatar(res.avatar);
-    });
-    api.getInitialCards().then(res => {
-      console.log(`length = ${res.length}`);
+    }).catch((err) => console.log(err));
+
+    api.getInitialCards().
+    then(res => {
+      // console.log(`length = ${res.length}`);
       setCards(res);
-    });
+    }).catch((err) => console.log(err));
   });
 
   // React.useEffect(() => {
@@ -52,19 +56,20 @@ function Main(props) {
         <button type="button" className="btn profile__add-btn" onClick={props.onAddPlace}></button>
       </section>
       <ul className="gallery">
-      { cards.map(item =>
-        (
-          <li className="gallery__item" style={{ backgroundImage: `url(${item.link})` }} key={`"${item._id}"`}>
-            <button className="btn gallery__icon-trash"></button>
-            <div className="gallery__bottom">
-              <h2 className="gallery__title">{item.name}</h2>
-              <div className="gallery__like-wrapper">
-                <button className="btn gallery__like"></button>
-                <div className="gallery__score">{item.likes.length}</div>
-              </div>
-            </div>
-          </li>
-      )
+      { cards.map(item => {return <Card card={item} key={`"${item._id}"`} />}
+        // (
+          // {card = new Card(item)}
+          // <li className="gallery__item" style={{ backgroundImage: `url(${item.link})` }} key={`"${item._id}"`}>
+          //   <button className="btn gallery__icon-trash"></button>
+          //   <div className="gallery__bottom">
+          //     <h2 className="gallery__title">{item.name}</h2>
+          //     <div className="gallery__like-wrapper">
+          //       <button className="btn gallery__like"></button>
+          //       <div className="gallery__score">{item.likes.length}</div>
+          //     </div>
+          //   </div>
+          // </li>
+      // )
       )
     }
       </ul>
