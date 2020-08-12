@@ -3,9 +3,20 @@ import ReactDOM from 'react-dom';
 
 import PopupWithForm from './PopupWithForm';
 import PopupWithImage from './PopupWithImage';
-
+import {api} from '../utils/Api.js';
 
 function Main(props) {
+  const [userName, setUserName] = React.useState('test');
+  const [userDescription, setDescription] = React.useState('test job');
+  const [userAvatar, setUserAvatar] = React.useState('#');
+
+  React.useEffect(() => {
+    api.getUserInfo().then(res => {
+      setUserName(res.name);
+      setDescription(res.description);
+      setUserAvatar(res.avatar);
+    });
+  });
 
   return (
     <>
@@ -13,15 +24,15 @@ function Main(props) {
       <section className="profile">
         <div className="profile__person">
           <div className="profile__avatar-wrapper">
-            <img src="images/avatar.jpg" alt="User ptofile avatar" className="profile__avatar" />
+            <img src={userAvatar} alt="User ptofile avatar" className="profile__avatar" />
             <div className="profile__avatar-hover" onClick={props.onEditAvatar} ></div>
           </div>
           <div className="profile__info">
             <div className="profile__info-wrapper">
-              <h1 className="profile__name">Jacques Cousteau</h1>
+              <h1 className="profile__name">{userName}</h1>
               <button type="button" className="btn profile__edit-btn" onClick={props.onEditProfile}></button>
             </div>
-            <p className="profile__occupation">Explorer</p>
+            <p className="profile__occupation">{userDescription}</p>
           </div>
         </div>
         <button type="button" className="btn profile__add-btn" onClick={props.onAddPlace}></button>

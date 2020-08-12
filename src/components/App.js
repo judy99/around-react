@@ -1,15 +1,14 @@
 import React from 'react';
-// import logo from './images/logo.png';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
 
+
 function App() {
-  const [isEditProfilePopupOpen, setEditPopup]  = React.useState(false);
+  const [isEditProfilePopupOpen, setEditPopup] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlace] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatar] = React.useState(false);
 
-  // const [isPopupClose, setPopupClose] = React.useState(false);
 
   function handleEditAvatarClick () {
     setEditAvatar(true);
@@ -29,6 +28,8 @@ function App() {
     setAddPlace(false);
   }
 
+
+
   return (
     <div className="page" >
       <Header />
@@ -39,7 +40,11 @@ function App() {
       isEditProfilePopupOpen={isEditProfilePopupOpen}
       isAddPlacePopupOpen={isAddPlacePopupOpen}
       isEditAvatarPopupOpen={isEditAvatarPopupOpen}
-      onCloseAllPopups={closeAllPopups} />
+      onCloseAllPopups={closeAllPopups}
+      // userName={userName}
+      // userDescription={userDescription}
+      // userAvatar={userAvatar}
+       />
       <Footer />
     </div>
   );
