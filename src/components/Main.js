@@ -9,6 +9,7 @@ function Main(props) {
   const [userName, setUserName] = React.useState('test');
   const [userDescription, setDescription] = React.useState('test job');
   const [userAvatar, setUserAvatar] = React.useState('#');
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     api.getUserInfo().then(res => {
@@ -16,7 +17,20 @@ function Main(props) {
       setDescription(res.description);
       setUserAvatar(res.avatar);
     });
+    api.getInitialCards().then(res => {
+      console.log(`length = ${res.length}`);
+      setCards(res);
+    });
   });
+
+  // React.useEffect(() => {
+  //   api.getInitialCards().then(res => {
+  //     console.log(res);
+  //     console.log(`length = ${res.length}`);
+  //     // setCards(res);
+  //   });
+  // });
+
 
   return (
     <>
@@ -38,6 +52,21 @@ function Main(props) {
         <button type="button" className="btn profile__add-btn" onClick={props.onAddPlace}></button>
       </section>
       <ul className="gallery">
+      { cards.map(item =>
+        (
+          <li className="gallery__item" style={{ backgroundImage: `url(${item.link})` }} key={`"${item._id}"`}>
+            <button className="btn gallery__icon-trash"></button>
+            <div className="gallery__bottom">
+              <h2 className="gallery__title">{item.name}</h2>
+              <div className="gallery__like-wrapper">
+                <button className="btn gallery__like"></button>
+                <div className="gallery__score">{item.likes.length}</div>
+              </div>
+            </div>
+          </li>
+      )
+      )
+    }
       </ul>
     </main>
 
@@ -79,20 +108,7 @@ function Main(props) {
       ]
     } /> }
 
-    <template id="card">
-      <li className="gallery__item">
-        <button className="btn gallery__icon-trash"></button>
-        <div className="gallery__bottom">
-          <h2 className="gallery__title"></h2>
-          <div className="gallery__like-wrapper">
-            <button className="btn gallery__like"></button>
-            <div className="gallery__score"></div>
-          </div>
-        </div>
-      </li>
-    </template>
     </>
   );
-
 }
 export default Main;
