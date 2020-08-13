@@ -1,6 +1,4 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
-
 import PopupWithForm from './PopupWithForm';
 import PopupWithImage from './PopupWithImage';
 import {api} from '../utils/Api.js';
@@ -17,12 +15,12 @@ function Main(props) {
       setUserName(res.name);
       setDescription(res.description);
       setUserAvatar(res.avatar);
-    }).catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
 
     api.getInitialCards().
-    then(res => {
-      setCards(res);
-    }).catch((err) => console.log(err));
+    then(res => { setCards(res)})
+    .catch((err) => console.log(err));
   });
 
   return (
@@ -52,46 +50,37 @@ function Main(props) {
       </ul>
     </main>
 
-    // invisible blocks
-    // edit profile
      <PopupWithForm title='Edit profile' name='edit-profile' isOpen={props.isEditProfilePopupOpen} onClose={props.onCloseAllPopups}
-    children={
-      [
-        <input key="1" type="text" name="name" id="name-input" className="form__input edit-profile__name" placeholder="Name" minLength="2" maxLength="40" required />,
-        <span key="2" id="name-input-error" className="form__input-error"></span>,
-        <input key="3" type="text" name="job" id="job-input" className="form__input edit-profile__job" placeholder="About me" minLength="2" maxLength="200" required />,
-        <span key="4" id="job-input-error" className="form__input-error"></span>
-      ]
+     children={
+       [
+         <input key="1" type="text" name="name" id="name-input" className="form__input edit-profile__name" placeholder="Name" minLength="2" maxLength="40" required />,
+         <span key="2" id="name-input-error" className="form__input-error"></span>,
+         <input key="3" type="text" name="job" id="job-input" className="form__input edit-profile__job" placeholder="About me" minLength="2" maxLength="200" required />,
+         <span key="4" id="job-input-error" className="form__input-error"></span>
+       ]
     } />
 
-    // add a new card
     { <PopupWithForm title='New place' name='add-card' isOpen={props.isAddPlacePopupOpen} onClose={props.onCloseAllPopups}
-    children={
-      [
-        <input key="1" type="text" name="name" id="title-input" className="form__input add-card__title" placeholder="Title" minLength="2" maxLength="30" required />,
-        <span key="2" id="title-input-error" className="form__input-error"></span>,
-        <input key="3" type="url" name="link" id="link-input" className="form__input add-card__image-link" placeholder="Image URL" required />,
-        <span key="4" id="link-input-error" className="form__input-error"></span>
-      ]
+      children={
+        [
+          <input key="1" type="text" name="name" id="title-input" className="form__input add-card__title" placeholder="Title" minLength="2" maxLength="30" required />,
+          <span key="2" id="title-input-error" className="form__input-error"></span>,
+          <input key="3" type="url" name="link" id="link-input" className="form__input add-card__image-link" placeholder="Image URL" required />,
+          <span key="4" id="link-input-error" className="form__input-error"></span>
+        ]
     } /> }
-    // show a card
+
     { <PopupWithImage card={props.selectedCard} onClose={props.onCloseAllPopups} /> }
 
-
-
-    // delete confirmation
     { <PopupWithForm title='Are you sure?' name='delete-card' /> }
 
-
-    // change avatar
     { <PopupWithForm title='Change profile picture' name='change-avatar' isOpen={props.isEditAvatarPopupOpen} onClose={props.onCloseAllPopups}
-    children={
-      [
-        <input key="1" type="url" name="avatar-link" id="avatar-input" className="form__input change-avatar__link" placeholder="Image URL" required />,
-        <span key="2" id="avatar-input-error" className="form__input-error"></span>
-      ]
+      children={
+        [
+          <input key="1" type="url" name="avatar-link" id="avatar-input" className="form__input change-avatar__link" placeholder="Image URL" required />,
+          <span key="2" id="avatar-input-error" className="form__input-error"></span>
+        ]
     } /> }
-
     </>
   );
 }

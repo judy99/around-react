@@ -1,5 +1,33 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Sprint 10: Around The U.S.
+
+### Overview
+* Intro
+* Figma
+* Images
+* [Link to the page]()
+
+**Intro**
+
+This project in progress with porting to React. Not all components work properly yet....
+
+**Figma**
+
+* [Link to the project in Figma](https://www.figma.com/file/xM9rNsdK4iNcFJmDZho3Aw/Sprint-3%3A-From-Portland-to-Portland-%2F-desktop-%2B-mobile?node-id=500%3A0)
+
+**Images**
+
+Images were imported from Figma. Optimized by [here](https://tinypng.com/).
+
+## Technologies
+Project is created with:
+* HTML5
+* CSS
+* BEM
+* JavaScript
+* React
+
 ## Available Scripts
 
 In the project directory, you can run:
