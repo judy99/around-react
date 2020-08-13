@@ -1,12 +1,16 @@
 import React from 'react';
 
-// props = {name: name, link: link, likes: arrayoflikes}
+// props = {card: [name: name, link: link, likes: arrayoflikes]}
 
 function Card(props) {
+
+  function handleClick() {
+    props.onCardClick(props.card);
+}
   return (
-    <li className="gallery__item" style={{ backgroundImage: `url(${props.card.link})` }} key={`"${props.card._id}"`}>
+    <li className="gallery__item" onClick={handleClick} style={{ backgroundImage: `url(${props.card.link})` }} key={props.card._id}  >
       <button className="btn gallery__icon-trash"></button>
-      <div className="gallery__bottom">
+      <div className="gallery__bottom" >
         <h2 className="gallery__title">{props.card.name}</h2>
         <div className="gallery__like-wrapper">
           <button className="btn gallery__like"></button>
