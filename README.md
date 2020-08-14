@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * Intro
 * Figma
 * Images
-* [Link to the page]()
+* [Link to the page](https://judy99.github.io/around-react/build/)
 
 **Intro**
 
