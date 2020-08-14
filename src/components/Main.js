@@ -51,36 +51,21 @@ function Main(props) {
     </main>
 
      <PopupWithForm title='Edit profile' name='edit-profile' isOpen={props.isEditProfilePopupOpen} onClose={props.onCloseAllPopups}
-     children={
-       [
-         <input key="1" type="text" name="name" id="name-input" className="form__input edit-profile__name" placeholder="Name" minLength="2" maxLength="40" required />,
-         <span key="2" id="name-input-error" className="form__input-error"></span>,
-         <input key="3" type="text" name="job" id="job-input" className="form__input edit-profile__job" placeholder="About me" minLength="2" maxLength="200" required />,
-         <span key="4" id="job-input-error" className="form__input-error"></span>
-       ]
-    } />
+       htmlText = '<input type="text" name="name" id="name-input" class="form__input edit-profile__name" placeholder="Name" minLength="2" maxLength="40" required /><span id="name-input-error" class="form__input-error"></span><input type="text" name="job" id="job-input" class="form__input edit-profile__job" placeholder="About me" minLength="2" maxLength="200" required /><span id="job-input-error" class="form__input-error"></span>'
+     />
 
     { <PopupWithForm title='New place' name='add-card' isOpen={props.isAddPlacePopupOpen} onClose={props.onCloseAllPopups}
-      children={
-        [
-          <input key="1" type="text" name="name" id="title-input" className="form__input add-card__title" placeholder="Title" minLength="2" maxLength="30" required />,
-          <span key="2" id="title-input-error" className="form__input-error"></span>,
-          <input key="3" type="url" name="link" id="link-input" className="form__input add-card__image-link" placeholder="Image URL" required />,
-          <span key="4" id="link-input-error" className="form__input-error"></span>
-        ]
-    } /> }
+      htmlText = '<input type="text" name="name" id="title-input" class="form__input add-card__title" placeholder="Title" minLength="2" maxLength="30" required /><span id="title-input-error" class="form__input-error"></span><input type="url" name="link" id="link-input" class="form__input add-card__image-link" placeholder="Image URL" required /><span id="link-input-error" class="form__input-error"></span>'
+     /> }
 
     { <PopupWithImage card={props.selectedCard} onClose={props.onCloseAllPopups} /> }
 
     { <PopupWithForm title='Are you sure?' name='delete-card' /> }
 
     { <PopupWithForm title='Change profile picture' name='change-avatar' isOpen={props.isEditAvatarPopupOpen} onClose={props.onCloseAllPopups}
-      children={
-        [
-          <input key="1" type="url" name="avatar-link" id="avatar-input" className="form__input change-avatar__link" placeholder="Image URL" required />,
-          <span key="2" id="avatar-input-error" className="form__input-error"></span>
-        ]
-    } /> }
+      htmlText = '<input key="1" type="url" name="avatar-link" id="avatar-input" class="form__input change-avatar__link" placeholder="Image URL" required /><span key="2" id="avatar-input-error" class="form__input-error"></span>'
+
+      /> }
     </>
   );
 }

@@ -8,7 +8,7 @@ function PopupWithForm(props) {
         <span className="popup__close" onClick={props.onClose}>+</span>
         <form action="#" method="post" className={`form ${props.name}`} name={`${props.name}`} noValidate>
           <h2 className={`${props.name}__heading`}>{props.title}</h2>
-          {props.children}
+          <div dangerouslySetInnerHTML={{__html: `${props.htmlText}`}} />
           <input type="submit" name="save" className={`btn form__submit ${props.name}__save`} value="Save" />
         </form>
       </div>

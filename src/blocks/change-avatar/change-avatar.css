@@ -2,7 +2,7 @@
 @import url('__link/change-avatar__link.css');
 @import url('__save/change-avatar__save.css');
 
-.change-avatar {
+.change-avatar, .change-avatar div {
   display: flex;
   flex-direction: column;
 }
