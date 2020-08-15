@@ -3,7 +3,7 @@
 @import url('__image-link/add-card__image-link.css');
 @import url('__create/add-card__create.css');
 
-.add-card, .add-card div {
+.add-card {
   display: flex;
   flex-direction: column;
 }

@@ -3,8 +3,7 @@
 @import url('__name/edit-profile__name.css');
 @import url('__save/edit-profile__save.css');
 
-.edit-profile,
-.edit-profile div {
+.edit-profile {
   display: flex;
   flex-direction: column;
 }
