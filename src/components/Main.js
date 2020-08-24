@@ -10,7 +10,7 @@ function Main(props) {
   // const [userDescription, setDescription] = React.useState('test job');
   // const [userAvatar, setUserAvatar] = React.useState('#');
   const [cards, setCards] = React.useState([]);
-  const user = React.useContext(CurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
 
 
   React.useEffect(() => {
@@ -26,28 +26,42 @@ function Main(props) {
     .catch((err) => console.log(err));
   });
 
+  function handleCardLike(card) {
+    // Check one more time if this card was already liked
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    console.log(currentUser._id);
+
+    // Send a request to the API and getting the updated card data
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+        // Create a new array based on the existing one and putting a new card into it
+      const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+      // Update the state
+      setCards(newCards);
+    });
+}
+
   return (
     <>
     <main className="main">
       <section className="profile">
         <div className="profile__person">
           <div className="profile__avatar-wrapper">
-            <img src={user.avatar} alt="User ptofile avatar" className="profile__avatar" />
+            <img src={currentUser.avatar} alt="User ptofile avatar" className="profile__avatar" />
             <div className="profile__avatar-hover" onClick={props.onEditAvatar} ></div>
           </div>
           <div className="profile__info">
             <div className="profile__info-wrapper">
-              <h1 className="profile__name">{user.name}</h1>
+              <h1 className="profile__name">{currentUser.name}</h1>
               <button type="button" className="btn profile__edit-btn" onClick={props.onEditProfile}></button>
             </div>
-            <p className="profile__occupation">{user.about}</p>
+            <p className="profile__occupation">{currentUser.about}</p>
           </div>
         </div>
         <button type="button" className="btn profile__add-btn" onClick={props.onAddPlace}></button>
       </section>
       <ul className="gallery">
       { cards.map(item => {
-        return <Card card={item} key={item._id} onCardClick={props.onSelectedCard} /> }
+        return <Card card={item} key={item._id} onCardClick={props.onSelectedCard} onCardLike={handleCardLike} /> }
       )
     }
       </ul>

@@ -75,8 +75,8 @@ export class Api {
 
   // add likes
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  addLike (card) {
-    return fetch(this.baseUrl + '/cards/likes/' + card.getId(), {
+  addLike (cardId) {
+    return fetch(this.baseUrl + '/cards/likes/' + cardId, {
       headers: this.headers,
       method: 'PUT'
     })
@@ -90,8 +90,8 @@ export class Api {
   }
 
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  removeLike (card) {
-    return fetch(this.baseUrl + '/cards/likes/' + card.getId(), {
+  removeLike (cardId) {
+    return fetch(this.baseUrl + '/cards/likes/' + cardId, {
       headers: this.headers,
       method: 'DELETE'
     })
@@ -102,6 +102,35 @@ export class Api {
           return Promise.reject(`Error: ${res.status}`);
         }
       });
+  }
+
+  changeLikeCardStatus (cardId, cardStatus) {
+    if (cardStatus) {
+      return fetch(this.baseUrl + '/cards/likes/' + cardId, {
+        headers: this.headers,
+        method: 'PUT'
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            return Promise.reject(`Error: ${res.status}`);
+          }
+        });
+    }
+    else {
+      return fetch(this.baseUrl + '/cards/likes/' + cardId, {
+        headers: this.headers,
+        method: 'DELETE'
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            return Promise.reject(`Error: ${res.status}`);
+          }
+        });
+    }
   }
 
   // Editing the Profile
