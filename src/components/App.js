@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
 import {api} from '../utils/api.js';
+import {CurrentUserContext} from '../contexts/CurrentUserContext.js';
 
 function App() {
   const [isEditProfilePopupOpen, setEditPopup] = React.useState(false);
@@ -46,6 +47,7 @@ function App() {
   return (
     <div className="page" >
       <Header />
+      <CurrentUserContext.Provider value={currentUser}>
       <Main
       onEditProfile={handleEditProfileClick}
       onEditAvatar={handleEditAvatarClick}
@@ -55,9 +57,8 @@ function App() {
       isEditAvatarPopupOpen={isEditAvatarPopupOpen}
       onCloseAllPopups={closeAllPopups}
       selectedCard={selectedCard}
-      onSelectedCard={handleCardClick}
-      currentUser={currentUser}
-       />
+      onSelectedCard={handleCardClick} />
+       </CurrentUserContext.Provider>
       <Footer />
     </div>
   );

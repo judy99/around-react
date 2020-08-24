@@ -3,12 +3,15 @@ import PopupWithForm from './PopupWithForm';
 import PopupWithImage from './PopupWithImage';
 import {api} from '../utils/api.js';
 import Card from './Card';
+import {CurrentUserContext} from '../contexts/CurrentUserContext.js';
 
 function Main(props) {
   // const [userName, setUserName] = React.useState('test');
   // const [userDescription, setDescription] = React.useState('test job');
   // const [userAvatar, setUserAvatar] = React.useState('#');
   const [cards, setCards] = React.useState([]);
+  const user = React.useContext(CurrentUserContext);
+
 
   React.useEffect(() => {
     // api.getUserInfo().then(res => {
@@ -29,15 +32,15 @@ function Main(props) {
       <section className="profile">
         <div className="profile__person">
           <div className="profile__avatar-wrapper">
-            <img src={props.currentUser.avatar} alt="User ptofile avatar" className="profile__avatar" />
+            <img src={user.avatar} alt="User ptofile avatar" className="profile__avatar" />
             <div className="profile__avatar-hover" onClick={props.onEditAvatar} ></div>
           </div>
           <div className="profile__info">
             <div className="profile__info-wrapper">
-              <h1 className="profile__name">{props.currentUser.name}</h1>
+              <h1 className="profile__name">{user.name}</h1>
               <button type="button" className="btn profile__edit-btn" onClick={props.onEditProfile}></button>
             </div>
-            <p className="profile__occupation">{props.currentUser.about}</p>
+            <p className="profile__occupation">{user.about}</p>
           </div>
         </div>
         <button type="button" className="btn profile__add-btn" onClick={props.onAddPlace}></button>
