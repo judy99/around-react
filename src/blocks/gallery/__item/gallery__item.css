@@ -19,5 +19,5 @@
 
 /* show just 6 first items */
 .gallery__item:nth-child(n + 7) {
-  display: none;
+  /* display: none; */
 }

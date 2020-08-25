@@ -20,7 +20,6 @@ const isLiked = props.card.likes.some(i => i._id === currentUser._id);
 // const cardLikeButtonClassName = `...`;
 
   function handleClick(e) {
-    // e.stopPropagation();
     props.onCardClick(props.card);
 
   }
@@ -30,13 +29,18 @@ const isLiked = props.card.likes.some(i => i._id === currentUser._id);
     props.onCardLike(props.card);
   }
 
+  function handleDeleteClick(e) {
+    e.stopPropagation();
+    props.onCardDelete(props.card);
+  }
+
   return (
     <li className="gallery__item" onClick={handleClick} style={{ backgroundImage: `url(${props.card.link})` }}  >
-      <button className={cardDeleteButtonClassName}></button>
+      <button className={cardDeleteButtonClassName} onClick={handleDeleteClick} ></button>
       <div className="gallery__bottom" >
         <h2 className="gallery__title">{props.card.name}</h2>
         <div className="gallery__like-wrapper">
-          <button className="btn gallery__like" onClick={handleLikeClick}></button>
+          <button className="btn gallery__like" onClick={handleLikeClick} ></button>
           <div className="gallery__score">{props.card.likes.length}</div>
         </div>
       </div>

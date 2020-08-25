@@ -29,7 +29,6 @@ function Main(props) {
   function handleCardLike(card) {
     // Check one more time if this card was already liked
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-    console.log(currentUser._id);
 
     // Send a request to the API and getting the updated card data
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
@@ -39,6 +38,15 @@ function Main(props) {
       setCards(newCards);
     });
 }
+
+  function handleCardDelete(card) {
+    api.removeCard(card._id).then(() => {
+        // Create a new array based on the existing one and putting a new card into it
+      const newCards = cards.filter((c) => c._id === card._id);
+      // Update the state
+      setCards(newCards);
+    });
+  }
 
   return (
     <>
@@ -61,7 +69,7 @@ function Main(props) {
       </section>
       <ul className="gallery">
       { cards.map(item => {
-        return <Card card={item} key={item._id} onCardClick={props.onSelectedCard} onCardLike={handleCardLike} /> }
+        return <Card card={item} key={item._id} onCardClick={props.onSelectedCard} onCardLike={handleCardLike} onCardDelete={handleCardDelete} /> }
       )
     }
       </ul>
