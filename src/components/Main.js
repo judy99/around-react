@@ -4,6 +4,7 @@ import PopupWithImage from './PopupWithImage';
 import {api} from '../utils/api.js';
 import Card from './Card';
 import {CurrentUserContext} from '../contexts/CurrentUserContext.js';
+import EditProfilePopup from './EditProfilePopup';
 
 function Main(props) {
   // const [userName, setUserName] = React.useState('test');
@@ -24,7 +25,11 @@ function Main(props) {
     api.getInitialCards().
     then(res => { setCards(res)})
     .catch((err) => console.log(err));
+
+
   });
+
+
 
   function handleCardLike(card) {
     // Check one more time if this card was already liked
@@ -45,6 +50,16 @@ function Main(props) {
       const newCards = cards.filter((c) => c._id === card._id);
       // Update the state
       setCards(newCards);
+    });
+  }
+
+  function handleUpdateUser(user) {
+    api.updateUserInfo(user).then((res) => {
+      currentUser.name = res.name;
+      currentUser.about = res.about;
+    }).catch((err) => console.log(err)).
+    finally(() => {
+      props.onCloseAllPopups();
     });
   }
 
@@ -75,13 +90,7 @@ function Main(props) {
       </ul>
     </main>
 
-    { <PopupWithForm title='Edit profile' name='edit-profile' isOpen={props.isEditProfilePopupOpen} onClose={props.onCloseAllPopups} >
-      <input type="text" name="name" id="name-input" className="form__input edit-profile__name" placeholder="Name" minLength="2" maxLength="40" required />
-      <span id="name-input-error" className="form__input-error"></span>
-      <input type="text" name="job" id="job-input" className="form__input edit-profile__job" placeholder="About me" minLength="2" maxLength="200" required />
-      <span id="job-input-error" className="form__input-error"></span>
-     </PopupWithForm>
-    }
+    {<EditProfilePopup isOpen={props.isEditProfilePopupOpen} onClose={props.onCloseAllPopups} onUpdateUser={handleUpdateUser} />}
 
    { <PopupWithForm title='New place' name='add-card' isOpen={props.isAddPlacePopupOpen} onClose={props.onCloseAllPopups} >
       <input type="text" name="name" id="title-input" className="form__input add-card__title" placeholder="Title" minLength="2" maxLength="30" required />

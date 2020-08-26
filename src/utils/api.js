@@ -177,5 +177,5 @@ export const api = new Api({
   headers: {
     authorization: '93454fed-b8d7-4b37-acbd-87ed08b659ea',
     'Content-Type': 'application/json'
-  }
+  },
 });
