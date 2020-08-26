@@ -5,39 +5,23 @@ import {api} from '../utils/api.js';
 import Card from './Card';
 import {CurrentUserContext} from '../contexts/CurrentUserContext.js';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 
 function Main(props) {
-  // const [userName, setUserName] = React.useState('test');
-  // const [userDescription, setDescription] = React.useState('test job');
-  // const [userAvatar, setUserAvatar] = React.useState('#');
   const [cards, setCards] = React.useState([]);
   const currentUser = React.useContext(CurrentUserContext);
-
-
   React.useEffect(() => {
-    // api.getUserInfo().then(res => {
-    //   setUserName(res.name);
-    //   setDescription(res.description);
-    //   setUserAvatar(res.avatar);
-    // })
-    // .catch((err) => console.log(err));
-
     api.getInitialCards().
     then(res => { setCards(res)})
     .catch((err) => console.log(err));
-
-
   });
-
-
 
   function handleCardLike(card) {
     // Check one more time if this card was already liked
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-
     // Send a request to the API and getting the updated card data
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-        // Create a new array based on the existing one and putting a new card into it
+      // Create a new array based on the existing one and putting a new card into it
       const newCards = cards.map((c) => c._id === card._id ? newCard : c);
       // Update the state
       setCards(newCards);
@@ -46,10 +30,10 @@ function Main(props) {
 
   function handleCardDelete(card) {
     api.removeCard(card._id).then(() => {
-        // Create a new array based on the existing one and putting a new card into it
-      const newCards = cards.filter((c) => c._id === card._id);
+      // Create a new array based on the existing one and putting a new card into it
+        const newCards = cards.filter((c) => c._id === card._id);
       // Update the state
-      setCards(newCards);
+        setCards(newCards);
     });
   }
 
@@ -57,6 +41,16 @@ function Main(props) {
     api.updateUserInfo(user).then((res) => {
       currentUser.name = res.name;
       currentUser.about = res.about;
+    }).catch((err) => console.log(err)).
+    finally(() => {
+      props.onCloseAllPopups();
+    });
+  }
+
+  function handleUpdateAvatar(avatar) {
+    api.setUserAvatar(avatar).then((res) => {
+      console.log(res);
+      currentUser.avatar = res.avatar;
     }).catch((err) => console.log(err)).
     finally(() => {
       props.onCloseAllPopups();
@@ -104,12 +98,8 @@ function Main(props) {
 
      {<PopupWithForm title='Are you sure?' name='delete-card' />}
 
-     {
-     <PopupWithForm title='Change profile picture' name='change-avatar' isOpen={props.isEditAvatarPopupOpen} onClose={props.onCloseAllPopups} >
-      <input type="url" name="avatar-link" id="avatar-input" className="form__input change-avatar__link" placeholder="Image URL" required />
-      <span id="avatar-input-error" className="form__input-error"></span>
-    </PopupWithForm>
-    }
+
+    {<EditAvatarPopup isOpen={props.isEditAvatarPopupOpen} onClose={props.onCloseAllPopups} onUpdateAvatar={handleUpdateAvatar} />}
       />
     </>
   );

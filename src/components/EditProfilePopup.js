@@ -20,7 +20,6 @@ function EditProfilePopup(props) {
   function handleSubmit(e) {
     // Prevent the browser from navigating to the form address
   e.preventDefault();
-
   // Pass the values of the managed components to the external handler
   props.onUpdateUser({
     name: name,
@@ -28,12 +27,12 @@ function EditProfilePopup(props) {
   });
   }
 
-  function handleOnChangeName(event) {
-    setName(event.target.value);
+  function handleOnChangeName(e) {
+    setName(e.target.value);
   }
 
-  function handleOnChangeDescription(event) {
-    setDescription(event.target.value);
+  function handleOnChangeDescription(e) {
+    setDescription(e.target.value);
   }
 
   return (

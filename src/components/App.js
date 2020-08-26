@@ -27,7 +27,6 @@ function App() {
 
   React.useEffect(() => {
     api.getUserInfo().then(res => {
-      // console.log(res);
       setCurrentUser(res);
     })
     .catch((err) => console.log(err));
