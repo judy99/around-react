@@ -40,7 +40,8 @@ const isLiked = props.card.likes.some(i => i._id === currentUser._id);
       <div className="gallery__bottom" >
         <h2 className="gallery__title">{props.card.name}</h2>
         <div className="gallery__like-wrapper">
-          <button className="btn gallery__like" onClick={handleLikeClick} ></button>
+          <button className={`btn gallery__like ${isLiked ? 'gallery__like_active' : ''} `} onClick={handleLikeClick} ></button>
+
           <div className="gallery__score">{props.card.likes.length}</div>
         </div>
       </div>
