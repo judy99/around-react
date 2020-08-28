@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/around-react/build/static/css/main.5c0fd4ea.chunk.css",
+    "main.js": "/around-react/build/static/js/main.19c3ad0d.chunk.js",
+    "main.js.map": "/around-react/build/static/js/main.19c3ad0d.chunk.js.map",
+    "runtime-main.js": "/around-react/build/static/js/runtime-main.b0f1621e.js",
+    "runtime-main.js.map": "/around-react/build/static/js/runtime-main.b0f1621e.js.map",
+    "static/js/2.6ee419ee.chunk.js": "/around-react/build/static/js/2.6ee419ee.chunk.js",
+    "static/js/2.6ee419ee.chunk.js.map": "/around-react/build/static/js/2.6ee419ee.chunk.js.map",
+    "index.html": "/around-react/build/index.html",
+    "precache-manifest.d2622d43dd625119fa75b62e76e0e65c.js": "/around-react/build/precache-manifest.d2622d43dd625119fa75b62e76e0e65c.js",
+    "service-worker.js": "/around-react/build/service-worker.js",
+    "static/css/main.5c0fd4ea.chunk.css.map": "/around-react/build/static/css/main.5c0fd4ea.chunk.css.map",
+    "static/js/2.6ee419ee.chunk.js.LICENSE.txt": "/around-react/build/static/js/2.6ee419ee.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/around-react/build/static/media/pen.6bfdb354.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b0f1621e.js",
+    "static/js/2.6ee419ee.chunk.js",
+    "static/css/main.5c0fd4ea.chunk.css",
+    "static/js/main.19c3ad0d.chunk.js"
+  ]
+}
