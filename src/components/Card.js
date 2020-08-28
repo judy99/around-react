@@ -15,10 +15,8 @@ function Card(props) {
   `btn gallery__icon-trash ${isOwn ? ' ' : 'gallery__icon-trash_hidden'}`
   );
 
-
   function handleClick(e) {
     props.onCardClick(props.card);
-
   }
 
   function handleLikeClick (e) {

@@ -9,7 +9,8 @@ function DeleteConfirmationPopup(props) {
   }
 
   return (
-    <PopupWithForm title='Are you sure?' name='delete-card' isOpen={props.isOpen} onClose={props.onClose} onSubmit={handleSubmit} value='Yes'/>
+    < PopupWithForm title='Are you sure?' name='delete-card' isOpen={props.isOpen} onClose={props.onClose} onSubmit={handleSubmit} value='Yes'>
+    < /PopupWithForm>
   );
 }
 

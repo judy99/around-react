@@ -36,7 +36,10 @@ export class Api {
   }
 
   // POST https://around.nomoreparties.co/v1/group-2/cards
-  addCard ({ name, link }) {
+  addCard ({
+  name,
+  link
+}) {
     return fetch(this.baseUrl + '/cards', {
       headers: this.headers,
       method: 'POST',

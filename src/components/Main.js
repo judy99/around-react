@@ -1,14 +1,9 @@
 import React from 'react';
-// import PopupWithForm from './PopupWithForm';
-import PopupWithImage from './PopupWithImage';
 import Card from './Card';
 import {CurrentUserContext} from '../contexts/CurrentUserContext.js';
-// import DeleteConfirmationPopup from './DeleteConfirmationPopup';
 
 function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
-
-  // const [isDeleteConfirmationPopup, setDeleteConfirmationPopup] = React.useState(false);
 
   return (
     <>
@@ -36,8 +31,6 @@ function Main(props) {
     }
       </ul>
     </main>
-
-
 
       />
     </>

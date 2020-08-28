@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Sprint 10: Around The U.S.
+# Sprint 11: Around The U.S.
 
 ### Overview
 * Intro
@@ -10,7 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 **Intro**
 
-This project in progress with porting to React. Not all components work properly yet....
+Project is almost ported to React. Validation is not implemented yet...
 
 **Figma**
 
